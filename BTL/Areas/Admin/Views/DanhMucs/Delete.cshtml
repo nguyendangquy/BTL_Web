@@ -1,0 +1,32 @@
+﻿@model BTL.Areas.Admin.Modal.DanhMuc
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xóa Sản Phẩm</h2>
+
+<h3>Bạn có chắc chắn muốn xóa?</h3>
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenDanhMuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDanhMuc)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            <button type="button" class="btn btn-outline-dark">@Html.ActionLink("Trở laị trang danh mục", "Index")</button>
+        </div>
+    }
+</div>

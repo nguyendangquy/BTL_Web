@@ -1,0 +1,42 @@
+﻿@model IEnumerable<BTL.Areas.Admin.Modal.DanhMuc>
+@{
+    ViewBag.Title = "Caterogy";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-lg-8">
+        <h1 class="page-header">Danh Mục</h1>
+    </div>
+    <div class="col-lg-4" style="padding-top: 60px;">
+        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addnew" data-whatever="mdo"><i class="fab fa-product-hunt" style="margin-right: 5px;"></i><a href="@Url.Action("Create","DanhMucs")">+ Thêm mới </a></button>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+    <table class="table">
+        <tr>
+            <th>
+                Tên danh mục
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenDanhMuc)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.MaDanhMuc }) |
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.MaDanhMuc }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.MaDanhMuc })
+                </td>
+            </tr>
+        }
+
+    </table>
+

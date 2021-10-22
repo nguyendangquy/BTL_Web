@@ -1,0 +1,183 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="https://kit.fontawesome.com/3d4065abd3.js" crossorigin="anonymous"></script>
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Areas/Admin/Alink/Css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="~/Areas/Admin/Alink/Css/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="~/Areas/Admin/Alink/Css/dist/css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="~/Areas/Admin/Alink/Css/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="~/Areas/Admin/Alink/Css/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="~/Areas/Admin/Alink/Css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index","Home")">SB Admin v2.0</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    
+                    <ul class="dropdown-menu dropdown-messages">
+                        
+                    </ul>
+                    <!-- /.dropdown-messages -->
+                </li>
+                <!-- /.dropdown -->
+     
+                <!-- /.dropdown -->
+    
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        @if (Session["HoTen"] != null)
+                        {
+
+                            <li>
+                                <a href="#"><i class="fa fa-user fa-fw"></i>Xin chào, @Session["HoTen"]</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-gear fa-fw"></i> @Session["ChucVu"]</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Login", "Home")" class="text-danger">
+                                    Đăng xuất
+                                </a>
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="@Url.Action("Login","Home")"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            </li>
+                        }
+
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        
+                        <li>
+                            <a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard fa-fw"></i> Trang Chủ</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","DanhMucs")"><i class="fas fa-money-bill-alt"></i> Danh Mục</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","SanPhams")"><i class="fab fa-product-hunt"></i> Sản Phẩm</a>
+                        </li>
+                        <li>
+                            @if (Session["ChucVu"].ToString() == "Giám đốc")
+                            {
+                                <a href="@Url.Action("Index","TaiKhoans")"><i class="fas fa-users"></i> Tài Khoản</a>
+                            }
+                            else
+                            {
+                                <a href="#"><i class="fas fa-users"></i> Bạn khổng đủ thẩm quyền truy cập vào đây</a>
+                            }
+
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","DonHangs")"><i class="fas fa-shopping-basket"></i> Đơn Hàng</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Login","Home")"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+
+            <!-- /.panel-body -->
+            <!-- /.panel-footer -->
+            <!-- /.panel .chat-panel -->
+            <!-- /.row -->
+            <!-- /#page-wrapper -->
+        </div>
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <script src="~/Areas/Admin/Alink/Css/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Areas/Admin/Alink/Css/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="~/Areas/Admin/Alink/Css/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="~/Areas/Admin/Alink/Css/raphael/raphael-min.js"></script>
+    <script src="~/Areas/Admin/Alink/Css/morrisjs/morris.min.js"></script>
+    <script src="~/Areas/Admin/Alink/Css/js/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="~/Areas/Admin/Alink/Css/dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>

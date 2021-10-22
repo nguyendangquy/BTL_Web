@@ -1,0 +1,67 @@
+﻿@model IEnumerable<BTL.Areas.Admin.Modal.TaiKhoan>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tài Khoản</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TaiKhoan1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MatKhau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenNhanVien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quyen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Khoa)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaiKhoan1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MatKhau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenNhanVien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quyen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Khoa)
+        </td>
+        <td>
+            @if (!(item.Quyen.ToString() == "Giám đốc"))
+            {
+                <a href="@Url.Action("Block","TaiKhoans", new { id = item.MaTK })"><button type="button" class="btn btn-outline-success">Khóa</button></a>
+                <a href="@Url.Action("Delete","TaiKhoans", new { id = item.MaTK })"><button type="button" class="btn btn-outline-success">Xóa</button></a>
+                @*@Html.ActionLink("Khóa", "Block", new { id = item.MaTK })*@
+              
+            }
+            <a href="@Url.Action("Edit","TaiKhoans", new { id = item.MaTK })"><button type="button" class="btn btn-outline-success">Sửa</button></a>
+          
+
+
+
+        </td>
+    </tr>
+}
+
+</table>
